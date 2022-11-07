@@ -16,7 +16,7 @@
             <input type="checkbox" class="dd-input" id="test" />
             <ul data-cy="filter-menu" class="dd-menu">
               <li v-for="(filter, i) in filters" :key="i" @click="filterTodo(filter.text)" class="d-flex align-items-center gap-3">
-                <img class="filter-img" :src="filter.icon" alt="" />
+                <img class="filter-img" :src="'/src/assets/' + filter.icon" alt="" />
                 <p class="filter-text">{{ filter.text }}</p>
               </li>
             </ul>
@@ -64,11 +64,11 @@
   const modalRemove = ref();
   const idItem = ref();
   const filters = ref([
-    { icon: '/src/assets/down.png', text: 'Terbaru' },
-    { icon: '/src/assets/up.png', text: 'Terlama' },
-    { icon: '/src/assets/az.png', text: 'A-Z' },
-    { icon: '/src/assets/za.png', text: 'Z-A' },
-    { icon: '/src/assets/up-down.png', text: 'Belum selesai' },
+    { icon: 'down.png', text: 'Terbaru' },
+    { icon: 'up.png', text: 'Terlama' },
+    { icon: 'az.png', text: 'A-Z' },
+    { icon: 'za.png', text: 'Z-A' },
+    { icon: 'up-down.png', text: 'Belum selesai' },
   ]);
 
   const filterTodo = (text) => {
