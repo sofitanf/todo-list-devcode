@@ -16,7 +16,7 @@
             <input type="checkbox" class="dd-input" id="test" />
             <ul data-cy="filter-menu" class="dd-menu">
               <li v-for="(filter, i) in filters" :key="i" @click="filterTodo(filter.text)" class="d-flex align-items-center gap-3">
-                <img class="filter-img" :src="'/src/assets/' + filter.icon" alt="" />
+                <img class="filter-img" :src="filter.icon" alt="" />
                 <p class="filter-text">{{ filter.text }}</p>
               </li>
             </ul>
@@ -52,6 +52,11 @@
   import axios from 'axios';
   import ModalForm from '../components/ModalForm.vue';
   import ModalDelete from '../components/ModalDelete.vue';
+  import down from '../assets/down.png';
+  import up from '../assets/up.png';
+  import az from '../assets/az.png';
+  import za from '../assets/za.png';
+  import updown from '../assets/up-down.png';
 
   const showInput = ref(false);
   const showAsset = ref(false);
@@ -64,11 +69,11 @@
   const modalRemove = ref();
   const idItem = ref();
   const filters = ref([
-    { icon: 'down.png', text: 'Terbaru' },
-    { icon: 'up.png', text: 'Terlama' },
-    { icon: 'az.png', text: 'A-Z' },
-    { icon: 'za.png', text: 'Z-A' },
-    { icon: 'up-down.png', text: 'Belum selesai' },
+    { icon: down, text: 'Terbaru' },
+    { icon: up, text: 'Terlama' },
+    { icon: az, text: 'A-Z' },
+    { icon: za, text: 'Z-A' },
+    { icon: updown, text: 'Belum selesai' },
   ]);
 
   const filterTodo = (text) => {
