@@ -11,8 +11,8 @@
           <img data-cy="todo-title" @click="showInput = !showInput" src="../assets/todo-title-edit-button.png" alt="" />
         </div>
         <div class="d-flex align-items-center gap-4">
-          <label data-cy="todo-sort-button" class="dropdown">
-            <img class="dd-button" src="../assets/todo-sort-button.png" alt="" />
+          <label class="dropdown">
+            <img data-cy="todo-sort-button" class="dd-button" src="../assets/todo-sort-button.png" alt="" />
             <input type="checkbox" class="dd-input" id="test" />
             <ul data-cy="filter-menu" class="dd-menu">
               <li v-for="(filter, i) in filters" :key="i" @click="filterTodo(filter.text)" :data-cy="filter.data" class="d-flex align-items-center gap-3">
@@ -37,12 +37,12 @@
               <p data-cy="todo-title" class="todo-title" :class="{ 'todo-done': !item.is_active }">{{ item.title }}</p>
               <img data-cy="todo-edit" data-bs-toggle="modal" @click="edit(item.title, item.priority, item.id)" data-bs-target="#exampleModal" src="../assets/todo-item-edit-button2.png" alt="" />
             </div>
-            <img data-cy="todo-delete" @click.prevent="deleteModal(item.title, item.id)" src="../assets/activity-item-delete-button.png" alt="" />
+            <img data-cy="todo-item-delete-button" @click.prevent="deleteModal(item.title, item.id)" src="../assets/activity-item-delete-button.png" alt="" />
           </div>
         </div>
       </div>
     </div>
-    <ModalDelete data="modal-delete-confirm-button" data-cy="todo-item-delete-button" ref="modalRemove" :title="title" type="List Item" @deleteItem="deleteTodoItem" />
+    <ModalDelete data="modal-delete-confirm-button" ref="modalRemove" :title="title" type="List Item" @deleteItem="deleteTodoItem" />
     <ModalForm ref="modal" v-if="formValue" @sendFormData="receiveData" :todo-title="title" :form-value="formValue" />
   </section>
 </template>

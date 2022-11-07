@@ -9,12 +9,12 @@
         </button>
       </div>
       <div class="mt-5 text-center">
-        <img v-if="showAsset" class="asset" src="../assets/activity-empty-state.png" width="600" />
+        <img v-if="showAsset" data-cy="activity-item" class="asset" src="../assets/activity-empty-state.png" width="600" />
         <div v-else class="row">
-          <div v-for="(activity, i) in activities" :key="i" class="col-3">
+          <div data-cy="activity-item" v-for="(activity, i) in activities" :key="i" class="col-3">
             <router-link :to="'/activity/' + activity.id">
               <div class="activity-item d-flex flex-column">
-                <div data-cy="activity-item-title" class="activity-item-title text-black text-start fw-700">{{ activity.title }}</div>
+                <div data-cy="activity-title" class="activity-item-title text-black text-start fw-700">{{ activity.title }}</div>
                 <div class="d-flex justify-content-between">
                   <div data-cy="activity-item-date" class="activity-item-date">{{ formatDate(activity.created_at) }}</div>
                   <img data-cy="activity-item-delete-button" @click.prevent="deleteModal(activity.title, activity.id)" src="../assets/activity-item-delete-button.png" />
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <ModalDelete data="activity-item-delete-button" ref="modal" :title="title" type="activity" @deleteItem="deleteActivity" />
+    <ModalDelete modal="modal-delete" ref="modal" :title="title" type="activity" @deleteItem="deleteActivity" />
   </section>
   <Alert ref="alertModal" />
 </template>
