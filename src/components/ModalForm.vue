@@ -16,7 +16,7 @@
               <label class="fw-600">PRIORITY</label>
               <label data-cy="modal-add-priority-dropdown" class="priority-dropdown select">
                 <div class="dd-button d-flex justify-content-between">
-                  <div class="d-flex gap-3 align-items-center">
+                  <div data-cy="modal-add-priority-item" class="d-flex gap-3 align-items-center">
                     <p :class="'todo-type ' + defaultSelected.class"></p>
                     <p class="todo-title">{{ defaultSelected.type }}</p>
                   </div>

@@ -8,7 +8,7 @@
           </router-link>
           <input data-cy="update-title" v-if="showInput" @focusout="updateTitle" tabindex="0" type="text" v-model="activity.title" class="title fw-700" />
           <p v-else data-cy="todo-title" @click="showInput = !showInput" class="title fw-700">{{ activity.title }}</p>
-          <img data-cy="todo-title" @click="showInput = !showInput" src="../assets/todo-title-edit-button.png" alt="" />
+          <img @click="showInput = !showInput" src="../assets/todo-title-edit-button.png" alt="" />
         </div>
         <div class="d-flex align-items-center gap-4">
           <label class="dropdown">
@@ -21,7 +21,7 @@
               </li>
             </ul>
           </label>
-          <button @click="title = 'Tambah List Item'" data-cy="todo-add-button" class="btn bg-blue text-white d-flex gap-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button @click="title = 'Tambah List Item'" data-cy="modal-add" class="btn bg-blue text-white d-flex gap-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <img src="../assets/tabler_plus.png" alt="" />
             <p>Tambah</p>
           </button>
@@ -37,13 +37,14 @@
               <p data-cy="todo-title" class="todo-title" :class="{ 'todo-done': !item.is_active }">{{ item.title }}</p>
               <img data-cy="todo-edit" data-bs-toggle="modal" @click="edit(item.title, item.priority, item.id)" data-bs-target="#exampleModal" src="../assets/todo-item-edit-button2.png" alt="" />
             </div>
-            <img data-cy="todo-item-delete-button" @click.prevent="deleteModal(item.title, item.id)" src="../assets/activity-item-delete-button.png" alt="" />
+            <img data-cy="modal-delete" @click.prevent="deleteModal(item.title, item.id)" src="../assets/activity-item-delete-button.png" alt="" />
           </div>
         </div>
       </div>
     </div>
     <ModalDelete data="modal-delete-confirm-button" ref="modalRemove" :title="title" type="List Item" @deleteItem="deleteTodoItem" />
     <ModalForm ref="modal" v-if="formValue" @sendFormData="receiveData" :todo-title="title" :form-value="formValue" />
+    <Alert ref="alertModal" />
   </section>
 </template>
 <script setup>
@@ -75,6 +76,7 @@
     { icon: za, text: 'Z-A', data: 'todo-sort-button' },
     { icon: updown, text: 'Belum selesai', data: 'sort-selection' },
   ]);
+  const alertModal = ref();
 
   const filterTodo = (text) => {
     if (text == 'Terbaru') {
@@ -105,6 +107,7 @@
   const deleteTodoItem = async () => {
     await axios.delete(`todo-items/${idItem.value}`);
     getActivity();
+    alertModal.value.toggleModal();
   };
 
   const edit = async (dataTitle, dataPriority, dataId) => {
