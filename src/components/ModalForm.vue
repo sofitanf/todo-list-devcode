@@ -1,20 +1,20 @@
 <template>
-  <div data-cy="modal-form" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <p class="modal-title fw-600" id="exampleModalLabel">{{ todoTitle }}</p>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form data-cy="form" @submit.prevent="sendData">
+        <form @submit.prevent="sendData">
           <div class="modal-body">
-            <div data-cy="input-name-list" class="d-flex flex-column gap-2 mb-4">
+            <div class="d-flex flex-column gap-2 mb-4">
               <label class="fw-600">NAMA LIST ITEM</label>
-              <input v-model="title" type="text" class="form-control" placeholder="Tambahkan nama list item" />
+              <input data-cy="modal-add-name-input" v-model="title" type="text" class="form-control" placeholder="Tambahkan nama list item" />
             </div>
             <div data-cy="select-priority" class="d-flex flex-column gap-2">
               <label class="fw-600">PRIORITY</label>
-              <label data-cy="priority-dropdown" class="priority-dropdown select">
+              <label data-cy="modal-add-priority-dropdown" class="priority-dropdown select">
                 <div class="dd-button d-flex justify-content-between">
                   <div class="d-flex gap-3 align-items-center">
                     <p :class="'todo-type ' + defaultSelected.class"></p>
@@ -33,7 +33,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button data-cy="btn-submit" type="submit" :disabled="!validInput" data-bs-dismiss="modal" class="btn text-white">Simpan</button>
+            <button data-cy="modal-add-save-button" type="submit" :disabled="!validInput" data-bs-dismiss="modal" class="btn text-white">Simpan</button>
           </div>
         </form>
       </div>

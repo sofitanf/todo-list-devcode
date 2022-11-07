@@ -1,5 +1,5 @@
 <template>
-  <div ref="modal" data-cy="modal-delete" class="modal fade" :class="{ show, 'd-block': active }" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div ref="modal" class="modal fade" :class="{ show, 'd-block': active }" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content p-4">
         <div class="modal-body text-center d-flex flex-column gap-5 align-items-center justify content-center">
@@ -9,8 +9,8 @@
             <p class="fw-700">“{{ title }}”?</p>
           </div>
           <div class="d-flex gap-4">
-            <button data-cy="button-cancel" @click="toggleModal" class="btn bg-gray fw-600">Batal</button>
-            <button data-cy="button-delete" @click="deleteComponent" class="btn bg-red fw-600 text-white">Hapus</button>
+            <button data-cy="modal-delete-cancel-button" @click="toggleModal" class="btn bg-gray fw-600">Batal</button>
+            <button :data-cy="data" @click="deleteComponent" class="btn bg-red fw-600 text-white">Hapus</button>
           </div>
         </div>
       </div>
@@ -23,6 +23,7 @@
   const props = defineProps({
     title: String,
     type: String,
+    data: String,
   });
   const emit = defineEmits(['deleteItem']);
 

@@ -1,5 +1,5 @@
 <template>
-  <div @click="toggleModal" ref="modal" data-cy="modal-alert" class="modal fade" :class="{ show, 'd-block': active }" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div @click="toggleModal" ref="modal" data-cy="modal-information" class="modal fade" :class="{ show, 'd-block': active }" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content py-1 px-3">
         <div class="modal-body d-flex align-items-center gap-3">

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <header>
+  <header data-cy="header-title">
     <div class="container">
       <router-link to="/">
         <p class="text-white fw-700">TO DO LIST APP</p>

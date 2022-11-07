@@ -7,34 +7,34 @@
             <img src="../assets/todo-back-button.png" alt="" />
           </router-link>
           <input data-cy="update-title" v-if="showInput" @focusout="updateTitle" tabindex="0" type="text" v-model="activity.title" class="title fw-700" />
-          <p v-else class="title fw-700">{{ activity.title }}</p>
-          <img data-cy="update-title-icon" @click="showInput = !showInput" src="../assets/todo-title-edit-button.png" alt="" />
+          <p v-else data-cy="todo-title" @click="showInput = !showInput" class="title fw-700">{{ activity.title }}</p>
+          <img data-cy="todo-title" @click="showInput = !showInput" src="../assets/todo-title-edit-button.png" alt="" />
         </div>
         <div class="d-flex align-items-center gap-4">
-          <label data-cy="filter-dropdown" class="dropdown">
+          <label data-cy="todo-sort-button" class="dropdown">
             <img class="dd-button" src="../assets/todo-sort-button.png" alt="" />
             <input type="checkbox" class="dd-input" id="test" />
             <ul data-cy="filter-menu" class="dd-menu">
-              <li v-for="(filter, i) in filters" :key="i" @click="filterTodo(filter.text)" class="d-flex align-items-center gap-3">
+              <li v-for="(filter, i) in filters" :key="i" @click="filterTodo(filter.text)" :data-cy="filter.data" class="d-flex align-items-center gap-3">
                 <img class="filter-img" :src="filter.icon" alt="" />
                 <p class="filter-text">{{ filter.text }}</p>
               </li>
             </ul>
           </label>
-          <button @click="title = 'Tambah List Item'" data-cy="button-add-item" class="btn bg-blue text-white d-flex gap-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button @click="title = 'Tambah List Item'" data-cy="todo-add-button" class="btn bg-blue text-white d-flex gap-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <img src="../assets/tabler_plus.png" alt="" />
             <p>Tambah</p>
           </button>
         </div>
       </div>
-      <div class="mt-5 text-center">
+      <div data-cy="todo-empty-state" class="mt-5 text-center">
         <img class="asset" v-if="showAsset" width="" src="../assets/todo-empty-state.png" alt="" />
         <div v-else data-cy="todo-item-wrap">
           <div v-for="(item, i) in activity.todo_items" :key="i" data-cy="todo-item" class="todo-item d-flex justify-content-between">
             <div class="d-flex gap-3 align-items-center">
-              <input data-cy="todo-checkbox" @change="updateActiveItem(item.id, item.is_active)" :checked="!item.is_active" class="check" type="checkbox" name="" id="" />
+              <input data-cy="todo-item-checkbox" @change="updateActiveItem(item.id, item.is_active)" :checked="!item.is_active" class="check" type="checkbox" name="" id="" />
               <div :class="'todo-type ' + item.priority"></div>
-              <p class="todo-title" :class="{ 'todo-done': !item.is_active }">{{ item.title }}</p>
+              <p data-cy="todo-title" class="todo-title" :class="{ 'todo-done': !item.is_active }">{{ item.title }}</p>
               <img data-cy="todo-edit" data-bs-toggle="modal" @click="edit(item.title, item.priority, item.id)" data-bs-target="#exampleModal" src="../assets/todo-item-edit-button2.png" alt="" />
             </div>
             <img data-cy="todo-delete" @click.prevent="deleteModal(item.title, item.id)" src="../assets/activity-item-delete-button.png" alt="" />
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <ModalDelete ref="modalRemove" :title="title" type="List Item" @deleteItem="deleteTodoItem" />
+    <ModalDelete data="modal-delete-confirm-button" data-cy="todo-item-delete-button" ref="modalRemove" :title="title" type="List Item" @deleteItem="deleteTodoItem" />
     <ModalForm ref="modal" v-if="formValue" @sendFormData="receiveData" :todo-title="title" :form-value="formValue" />
   </section>
 </template>
@@ -69,11 +69,11 @@
   const modalRemove = ref();
   const idItem = ref();
   const filters = ref([
-    { icon: down, text: 'Terbaru' },
-    { icon: up, text: 'Terlama' },
-    { icon: az, text: 'A-Z' },
-    { icon: za, text: 'Z-A' },
-    { icon: updown, text: 'Belum selesai' },
+    { icon: down, text: 'Terbaru', data: 'sort-selection' },
+    { icon: up, text: 'Terlama', data: 'sort-selection' },
+    { icon: az, text: 'A-Z', data: 'todo-sort-button' },
+    { icon: za, text: 'Z-A', data: 'todo-sort-button' },
+    { icon: updown, text: 'Belum selesai', data: 'sort-selection' },
   ]);
 
   const filterTodo = (text) => {

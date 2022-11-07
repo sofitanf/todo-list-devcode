@@ -3,7 +3,7 @@
     <div class="container">
       <div class="d-flex justify-content-between">
         <p class="title fw-700">Activity</p>
-        <button data-cy="button-add-activity" @click="addActivity" class="btn bg-blue text-white d-flex gap-1 justify-content-center">
+        <button data-cy="activity-add-button" @click="addActivity" class="btn bg-blue text-white d-flex gap-1 justify-content-center">
           <img src="../assets/tabler_plus.png" />
           <p>Tambah</p>
         </button>
@@ -13,11 +13,11 @@
         <div v-else class="row">
           <div v-for="(activity, i) in activities" :key="i" class="col-3">
             <router-link :to="'/activity/' + activity.id">
-              <div data-cy="activity-item" class="activity-item d-flex flex-column">
-                <div class="activity-item-title text-black text-start fw-700">{{ activity.title }}</div>
+              <div class="activity-item d-flex flex-column">
+                <div data-cy="activity-item-title" class="activity-item-title text-black text-start fw-700">{{ activity.title }}</div>
                 <div class="d-flex justify-content-between">
-                  <div class="activity-item-date">{{ formatDate(activity.created_at) }}</div>
-                  <img data-cy="delete-activity" @click.prevent="deleteModal(activity.title, activity.id)" src="../assets/activity-item-delete-button.png" />
+                  <div data-cy="activity-item-date" class="activity-item-date">{{ formatDate(activity.created_at) }}</div>
+                  <img data-cy="activity-item-delete-button" @click.prevent="deleteModal(activity.title, activity.id)" src="../assets/activity-item-delete-button.png" />
                 </div>
               </div>
             </router-link>
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <ModalDelete ref="modal" :title="title" type="activity" @deleteItem="deleteActivity" />
+    <ModalDelete data="activity-item-delete-button" ref="modal" :title="title" type="activity" @deleteItem="deleteActivity" />
   </section>
   <Alert ref="alertModal" />
 </template>
