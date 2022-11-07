@@ -53,6 +53,7 @@
   import axios from 'axios';
   import ModalForm from '../components/ModalForm.vue';
   import ModalDelete from '../components/ModalDelete.vue';
+  import Alert from '../components/Alert.vue';
   import down from '../assets/down.png';
   import up from '../assets/up.png';
   import az from '../assets/az.png';
