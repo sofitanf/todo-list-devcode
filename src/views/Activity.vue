@@ -6,9 +6,9 @@
           <router-link to="/">
             <img src="../assets/todo-back-button.png" alt="" />
           </router-link>
-          <input data-cy="update-title" v-if="showInput" @focusout="updateTitle" tabindex="0" type="text" v-model="activity.title" class="title fw-700" />
-          <p v-else data-cy="todo-title" @click="showInput = !showInput" class="title fw-700">{{ activity.title }}</p>
-          <img @click="showInput = !showInput" src="../assets/todo-title-edit-button.png" alt="" />
+          <input ref="inputTitle" data-cy="update-title" v-if="showInput" @focusout="updateTitle" tabindex="0" type="text" v-model="activity.title" class="title fw-700" />
+          <p v-else data-cy="todo-title" @click="openInput" class="title fw-700">{{ activity.title }}</p>
+          <img @click="openInput" src="../assets/todo-title-edit-button.png" alt="" />
         </div>
         <div class="d-flex align-items-center gap-4">
           <label class="dropdown">
@@ -48,7 +48,7 @@
   </section>
 </template>
 <script setup>
-  import { onMounted, ref } from 'vue';
+  import { nextTick, onMounted, ref } from 'vue';
   import { useRoute } from 'vue-router';
   import axios from 'axios';
   import ModalForm from '../components/ModalForm.vue';
@@ -70,6 +70,7 @@
   const modal = ref();
   const modalRemove = ref();
   const idItem = ref();
+  const inputTitle = ref();
   const filters = ref([
     { icon: down, text: 'Terbaru', data: 'sort-selection' },
     { icon: up, text: 'Terlama', data: 'sort-selection' },
@@ -78,6 +79,13 @@
     { icon: updown, text: 'Belum selesai', data: 'sort-selection' },
   ]);
   const alertModal = ref();
+
+  const openInput = () => {
+    showInput.value = !showInput.value;
+    nextTick(() => {
+      inputTitle.value.focus();
+    });
+  };
 
   const filterTodo = (text) => {
     if (text == 'Terbaru') {

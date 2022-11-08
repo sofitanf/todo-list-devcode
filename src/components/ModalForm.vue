@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <p class="modal-title fw-600" id="exampleModalLabel">{{ todoTitle }}</p>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button @click="resetForm" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form @submit.prevent="sendData">
           <div class="modal-body">
@@ -79,18 +79,21 @@
     },
   ]);
 
-  const selectPriority = (classData, typeClass) => {
-    defaultSelected.value = { type: typeClass, class: classData };
-    console.log('hi');
-  };
-
-  const sendData = () => {
-    emit('sendFormData', { title: title.value, priority: defaultSelected.value.class });
+  const resetForm = () => {
     title.value = '';
     defaultSelected.value = {
       type: 'Very high',
       class: 'very-high',
     };
+  };
+
+  const selectPriority = (classData, typeClass) => {
+    defaultSelected.value = { type: typeClass, class: classData };
+  };
+
+  const sendData = () => {
+    emit('sendFormData', { title: title.value, priority: defaultSelected.value.class });
+    resetForm();
   };
 
   watch(title, () => {
