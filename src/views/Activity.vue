@@ -21,7 +21,7 @@
               </li>
             </ul>
           </label>
-          <button @click="title = 'Tambah List Item'" data-cy="todo-add-button" class="btn bg-blue text-white d-flex gap-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button @click="title = 'Tambah List Item'" data-cy="modal-add" class="btn bg-blue text-white d-flex gap-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <img src="../assets/tabler_plus.png" alt="" />
             <p>Tambah</p>
           </button>
@@ -37,7 +37,7 @@
               <p data-cy="todo-title" class="todo-title" :class="{ 'todo-done': !item.is_active }">{{ item.title }}</p>
               <img data-cy="todo-edit" data-bs-toggle="modal" @click="edit(item.title, item.priority, item.id)" data-bs-target="#exampleModal" src="../assets/todo-item-edit-button2.png" alt="" />
             </div>
-            <img data-cy="todo-item-delete-button" @click.prevent="deleteModal(item.title, item.id)" src="../assets/activity-item-delete-button.png" alt="" />
+            <img data-cy="modal-delete" @click.prevent="deleteModal(item.title, item.id)" src="../assets/activity-item-delete-button.png" alt="" />
           </div>
         </div>
       </div>
