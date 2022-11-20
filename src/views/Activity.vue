@@ -14,12 +14,12 @@
           <label class="dropdown">
             <img data-cy="todo-sort-button" class="dd-button" src="../assets/todo-sort-button.png" alt="" />
             <input type="checkbox" class="dd-input" id="test" />
-            <ul data-cy="filter-menu" class="dd-menu">
-              <li v-for="(filter, i) in filters" :key="i" @click="filterTodo(filter.text)" :data-cy="filter.data" class="d-flex align-items-center gap-3">
+            <div data-cy="filter-menu" class="dd-menu">
+              <div v-for="(filter, i) in filters" :key="i" @click="filterTodo(filter.text)" :data-cy="filter.data" class="d-flex align-items-center gap-3">
                 <img class="filter-img" :src="filter.icon" alt="" />
                 <p class="filter-text">{{ filter.text }}</p>
-              </li>
-            </ul>
+              </div>
+            </div>
           </label>
           <button @click="title = 'Tambah List Item'" data-cy="modal-add" class="btn bg-blue text-white d-flex gap-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <img src="../assets/tabler_plus.png" alt="" />
@@ -37,7 +37,7 @@
               <p data-cy="todo-title" class="todo-title" :class="{ 'todo-done': !item.is_active }">{{ item.title }}</p>
               <img data-cy="todo-edit" data-bs-toggle="modal" @click="edit(item.title, item.priority, item.id)" data-bs-target="#exampleModal" src="../assets/todo-item-edit-button2.png" alt="" />
             </div>
-            <img data-cy="modal-delete" @click.prevent="deleteModal(item.title, item.id)" src="../assets/activity-item-delete-button.png" alt="" />
+            <img data-cy="todo-item-delete-button" @click.prevent="deleteModal(item.title, item.id)" src="../assets/activity-item-delete-button.png" alt="" />
           </div>
         </div>
       </div>
@@ -199,23 +199,23 @@
     display: block;
   }
 
-  .dd-menu li {
+  .dd-menu div {
     padding: 10px 20px;
     cursor: pointer;
     white-space: nowrap;
   }
 
-  .dd-menu li:hover {
+  .dd-menu div:hover {
     background-color: #f6f6f6;
   }
 
-  .dd-menu li a {
+  .dd-menu div a {
     display: block;
     margin: -10px -20px;
     padding: 10px 20px;
   }
 
-  .dd-menu li.divider {
+  .dd-menu div.divider {
     padding: 0;
     border-bottom: 1px solid #cccccc;
   }
