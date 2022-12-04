@@ -38,8 +38,8 @@
   };
 
   const deleteComponent = () => {
-    emit('deleteItem');
     toggleModal();
+    emit('deleteItem');
   };
 
   defineExpose({

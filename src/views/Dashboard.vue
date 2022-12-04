@@ -26,7 +26,9 @@
       </div>
     </div>
   </section>
+  <!-- <div v-if="showModal"> -->
   <ModalDelete data="modal-delete-confirm-button" ref="modal" :title="title" type="activity" @deleteItem="deleteActivity" />
+  <!-- </div> -->
   <Alert ref="alertModal" />
   <div data-cy="modal-delete"></div>
 </template>
