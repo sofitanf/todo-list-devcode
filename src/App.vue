@@ -1,5 +1,10 @@
 <script setup>
   import { RouterLink, RouterView } from 'vue-router';
+
+  const modal = document.getElementsByClassName('modal')[0];
+  if (modal) {
+    modal.style.removeProperty('display');
+  }
 </script>
 
 <template>

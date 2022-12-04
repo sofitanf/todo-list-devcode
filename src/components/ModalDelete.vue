@@ -1,5 +1,5 @@
 <template>
-  <div ref="modal" class="modal fade" :class="{ show }" :style="{ display: active ? 'block' : 'none' }" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div ref="modal" class="modal fade hide" :class="{ show }" :style="{ display: active ? 'block' : 'none' }" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content p-4">
         <div class="modal-body text-center d-flex flex-column gap-5 align-items-center justify content-center">
@@ -32,8 +32,15 @@
 
   const toggleModal = () => {
     const body = document.querySelector('body');
+    const modal = document.getElementsByClassName('modal')[0];
     active.value = !active.value;
-    active.value ? body.classList.add('modal-open') : body.classList.remove('modal-open');
+    if (active) {
+      body.classList.add('modal-open');
+      modal.style.display = 'block !important';
+    } else {
+      body.classList.remove('modal-open');
+      modal.style.display = 'none !important';
+    }
     setTimeout(() => (show.value = !show.value), 100);
   };
 
@@ -50,6 +57,7 @@
   .bg-gray,
   .bg-gray:active {
     background-color: var(--gray);
+    z-index: 9999;
   }
   .bg-red,
   .bg-red:active {
