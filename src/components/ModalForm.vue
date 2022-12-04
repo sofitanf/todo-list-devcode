@@ -1,7 +1,7 @@
 <template>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
+      <div data-cy="modal-add" class="modal-content">
         <div class="modal-header">
           <p class="modal-title fw-600" id="exampleModalLabel">{{ todoTitle }}</p>
           <button @click="resetForm" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
