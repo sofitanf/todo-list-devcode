@@ -2,7 +2,7 @@
   <section data-cy="activities-state" class="bg-gray pb-5">
     <div class="container">
       <div class="d-flex justify-content-between">
-        <p class="title fw-700">Activity</p>
+        <p data-cy="activity-title" class="title fw-700">Activity</p>
         <button data-cy="activity-add-button" @click="addActivity" class="btn bg-blue text-white d-flex gap-1 justify-content-center">
           <img src="../assets/tabler_plus.png" />
           <p>Tambah</p>
@@ -17,7 +17,7 @@
                 <p data-cy="activity-item-title" class="activity-item-title text-black text-start fw-700">{{ activity.title }}</p>
                 <div class="d-flex justify-content-between">
                   <div data-cy="activity-item-date" class="activity-item-date">{{ formatDate(activity.created_at) }}</div>
-                  <img data-cy="modal-delete" @click.prevent="deleteModal(activity.title, activity.id)" src="../assets/activity-item-delete-button.png" />
+                  <img data-cy="activity-item-delete-button" @click.prevent="deleteModal(activity.title, activity.id)" src="../assets/activity-item-delete-button.png" />
                 </div>
               </div>
             </router-link>

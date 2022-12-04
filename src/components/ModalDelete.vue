@@ -1,5 +1,6 @@
 <template>
-  <div ref="modal" class="modal fade hide" :class="{ show }" :style="{ display: active ? 'block' : 'none' }" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div v-if="active" class="modal-backdrop fade show"></div>
+  <div ref="modal" class="modal fade" :class="{ show }" :style="{ display: active ? 'block' : 'none' }" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content p-4">
         <div class="modal-body text-center d-flex flex-column gap-5 align-items-center justify content-center">
@@ -10,13 +11,12 @@
           </div>
           <div class="d-flex gap-4">
             <button data-cy="modal-delete-cancel-button" @click="toggleModal" class="btn bg-gray fw-600">Batal</button>
-            <button :data-cy="data" @click="deleteComponent" class="btn bg-red fw-600 text-white">Hapus</button>
+            <button data-cy="modal-delete-confirm-button" @click="deleteComponent" class="btn bg-red fw-600 text-white">Hapus</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div v-if="active" class="modal-backdrop fade show"></div>
 </template>
 <script setup>
   import { ref } from 'vue';
