@@ -25,10 +25,10 @@
         </div>
       </div>
     </div>
+    <ModalDelete data="modal-delete-confirm-button" ref="modal" :title="title" type="activity" @deleteItem="deleteActivity" />
+    <Alert ref="alertModal" />
+    <div data-cy="modal-delete"></div>
   </section>
-  <ModalDelete data="activity-item-delete-button" ref="modal" :title="title" type="activity" @deleteItem="deleteActivity" />
-  <Alert ref="alertModal" />
-  <div data-cy="modal-delete"></div>
 </template>
 <script setup>
   import { onMounted, ref } from 'vue';
