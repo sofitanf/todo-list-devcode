@@ -42,13 +42,13 @@
         </div>
       </div>
     </div>
-    <ModalDelete data="modal-delete-confirm-button" ref="modalRemove" :title="title" type="List Item" @deleteItem="deleteTodoItem" />
-    <ModalForm ref="modal" v-if="formValue" @sendFormData="receiveData" :todo-title="title" :form-value="formValue" />
-    <Alert ref="alertModal" />
-    <div data-cy="modal-information"></div>
-    <div data-cy="modal-add"></div>
-    <div data-cy="modal-delete"></div>
   </section>
+  <ModalDelete data="modal-delete-confirm-button" ref="modalRemove" :title="title" type="List Item" @deleteItem="deleteTodoItem" />
+  <ModalForm ref="modal" v-if="formValue" @sendFormData="receiveData" :todo-title="title" :form-value="formValue" />
+  <Alert ref="alertModal" />
+  <div data-cy="modal-information"></div>
+  <div data-cy="modal-add"></div>
+  <div data-cy="modal-delete"></div>
 </template>
 <script setup>
   import { nextTick, onMounted, ref } from 'vue';
