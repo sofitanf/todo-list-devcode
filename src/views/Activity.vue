@@ -37,7 +37,7 @@
               <p data-cy="todo-title" class="todo-title" :class="{ 'todo-done': !item.is_active }">{{ item.title }}</p>
               <img data-cy="todo-edit" data-bs-toggle="modal" @click="edit(item.title, item.priority, item.id)" data-bs-target="#exampleModal" src="../assets/todo-item-edit-button2.png" alt="" />
             </div>
-            <img data-cy="modal-delete" @click.prevent="deleteModal(item.title, item.id)" src="../assets/activity-item-delete-button.png" alt="" />
+            <img data-cy="todo-item-delete-button" @click.prevent="deleteModal(item.title, item.id)" src="../assets/activity-item-delete-button.png" alt="" />
           </div>
         </div>
       </div>
