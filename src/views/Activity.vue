@@ -21,7 +21,7 @@
               </div>
             </div>
           </label>
-          <button @click="title = 'Tambah List Item'" data-cy="modal-add" class="btn bg-blue text-white d-flex gap-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button @click="title = 'Tambah List Item'" data-cy="todo-add-button" class="btn bg-blue text-white d-flex gap-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <img src="../assets/tabler_plus.png" alt="" />
             <p>Tambah</p>
           </button>
