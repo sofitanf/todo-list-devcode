@@ -16,7 +16,7 @@
               <label class="fw-600">PRIORITY</label>
               <label data-cy="modal-add-priority-dropdown" class="priority-dropdown select">
                 <div class="dd-button d-flex justify-content-between">
-                  <div data-cy="modal-add-priority-item" class="d-flex gap-3 align-items-center">
+                  <div class="d-flex gap-3 align-items-center">
                     <p :class="'todo-type ' + defaultSelected.class"></p>
                     <p class="todo-title">{{ defaultSelected.type }}</p>
                   </div>
@@ -24,9 +24,11 @@
                 </div>
                 <input type="checkbox" class="dd-input" id="test" />
                 <ul data-cy="priority-menu" class="dd-menu">
-                  <li v-for="(option, i) in options" :key="i" @click="selectPriority(option.class, option.type)" class="d-flex align-items-center gap-3">
-                    <p :class="'todo-type ' + option.class"></p>
-                    <p class="todo-title">{{ option.type }}</p>
+                  <li data-cy="modal-add-priority-item" v-for="(option, i) in options" :key="i" @click="selectPriority(option.class, option.type)">
+                    <div class="d-flex align-items-center gap-3">
+                      <p :class="'todo-type ' + option.class"></p>
+                      <p class="todo-title">{{ option.type }}</p>
+                    </div>
                   </li>
                 </ul>
               </label>
