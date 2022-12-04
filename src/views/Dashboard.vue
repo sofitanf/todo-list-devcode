@@ -17,7 +17,7 @@
                 <p data-cy="activity-item-title" class="activity-item-title text-black text-start fw-700">{{ activity.title }}</p>
                 <div class="d-flex justify-content-between">
                   <div data-cy="activity-item-date" class="activity-item-date">{{ formatDate(activity.created_at) }}</div>
-                  <img data-cy="activity-item-delete-button" @click.prevent="deleteModal(activity.title, activity.id)" src="../assets/activity-item-delete-button.png" />
+                  <img data-cy="modal-delete" @click.prevent="deleteModal(activity.title, activity.id)" src="../assets/activity-item-delete-button.png" />
                 </div>
               </div>
             </router-link>
